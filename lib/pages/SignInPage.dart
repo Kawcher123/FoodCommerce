@@ -3,8 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_app/animation/ScaleRoute.dart';
 import 'package:flutter_app/pages/FoodDetailsPage.dart';
 import 'package:flutter_app/pages/SignUpPage.dart';
+import 'package:flutter_app/toast_component.dart';
 import 'package:flutter_app/widgets/BottomNavBarWidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:toast/toast.dart';
 
 class SignInPage extends StatefulWidget {
   final bool hideIcon;
@@ -21,8 +23,8 @@ class _SignInPageState extends State<SignInPage> {
     double defaultIconSize = 17;
     TextEditingController phoneController = TextEditingController();
     TextEditingController passController = TextEditingController();
-    String phone = '019123456';
-    String password = 'ABC123';
+    String phone = 'Test123';
+    String password = 'Abc123';
 
     return Scaffold(
       body: Container(
@@ -176,14 +178,19 @@ class _SignInPageState extends State<SignInPage> {
                                 fontFamily: "WorkSansBold"),
                           ),
                         ),
-                        onPressed: () => {
-                              if (phoneController.text == phone &&
-                                  passController.text == password)
-                                {
-                                  Navigator.push(context,
-                                      ScaleRoute(page: BottomNavBarWidget()))
-                                }
-                            }),
+                        onPressed: () {
+                          if (phoneController.text == phone &&
+                              passController.text == password) {
+                            Navigator.push(context,
+                                ScaleRoute(page: BottomNavBarWidget()));
+                          } else {
+                            ToastComponent.showDialog(
+                                "Credential doesn't match, please try again!",
+                                context,
+                                gravity: Toast.CENTER,
+                                duration: Toast.LENGTH_LONG);
+                          }
+                        }),
                   ),
                   SizedBox(
                     height: 2,
@@ -212,8 +219,8 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => {
-                        Navigator.push(context, ScaleRoute(page: SignUpPage()))
+                      onTap: () {
+                        Navigator.push(context, ScaleRoute(page: SignUpPage()));
                       },
                       child: Container(
                         child: Text(
