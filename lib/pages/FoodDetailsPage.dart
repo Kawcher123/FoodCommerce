@@ -287,7 +287,7 @@ class AddToCartMenu extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context, ScaleRoute(page: FoodOrderPage(false)));
+              Navigator.push(context, ScaleRoute(page: Cart(back: true)));
             },
             child: Container(
               width: 200.0,

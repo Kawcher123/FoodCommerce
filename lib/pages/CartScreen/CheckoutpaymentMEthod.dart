@@ -31,6 +31,17 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
       bottomNavigationBar: buildBottomContainer(),
       body: ListView(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, top: 15),
+            child: Text(
+              "Payment Method:",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF3a3a3b),
+                  fontWeight: FontWeight.w600),
+              textAlign: TextAlign.left,
+            ),
+          ),
           // InkWell(
           //   onTap: () {
           //     ToastComponent.showDialog("Order Placed Successfully!", context,
@@ -107,22 +118,6 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                            "Payment Method",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Color(0xFF3a3a3b),
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
                       PaymentMethodWidget(),
                     ]),
               ),

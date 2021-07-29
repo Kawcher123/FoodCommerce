@@ -113,17 +113,6 @@ class _CartState extends State<Cart> {
                     )
                   ]),
                 ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: buildCartItemCard(),
-                    ),
-                    Container(
-                      height: 140,
-                    )
-                  ]),
-                ),
               ],
             ),
             Align(
@@ -426,7 +415,6 @@ class _CartState extends State<Cart> {
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          String imageLink = data[index]['image'];
           return Card(
             shape: RoundedRectangleBorder(
               side: BorderSide(color: Color(0xFFFD2D2C), width: 1.0),
