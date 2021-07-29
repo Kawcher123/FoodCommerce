@@ -198,7 +198,7 @@ class _CartState extends State<Cart> {
                       )),
                       child: Center(
                         child: Text(
-                          "CHECKOUT",
+                          "NEXT",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 13,
