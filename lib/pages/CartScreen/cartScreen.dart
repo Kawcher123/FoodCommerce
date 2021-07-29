@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_app/animation/ScaleRoute.dart';
 import 'package:flutter_app/pages/CartScreen/CheckoutpaymentMEthod.dart';
 import 'package:flutter_app/toast_component.dart';
+import 'package:flutter_app/widgets/BottomNavBarWidget.dart';
 import 'package:toast/toast.dart';
 
 class Cart extends StatefulWidget {
@@ -46,14 +47,14 @@ class _CartState extends State<Cart> {
 
   List data = [
     {
-      'name': 'Fried Egg',
-      'price': 24,
+      'name': 'Grilled Salmon',
+      'price': 96.00,
       'quantity': 3,
       'image': 'assets/demo.jpeg'
     },
     {
-      'name': 'Mixed Vegetable',
-      'price': 20,
+      'name': 'Meat Vegetable',
+      'price': 65.08,
       'quantity': 2,
       'image': 'assets/demo2.jpeg'
     },
@@ -111,7 +112,18 @@ class _CartState extends State<Cart> {
                       height: 140,
                     )
                   ]),
-                )
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: buildCartItemCard(),
+                    ),
+                    Container(
+                      height: 140,
+                    )
+                  ]),
+                ),
               ],
             ),
             Align(
@@ -205,9 +217,12 @@ class _CartState extends State<Cart> {
                         ),
                       ),
                       onPressed: () async {
-                        ToastComponent.showDialog(
-                            "Order Placed Successfully!", context,
-                            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+                        // ToastComponent.showDialog(
+                        //     "Your order has been sent to the kitchen!", context,
+                        //     gravity: Toast.CENTER, duration: 4);
+
+                        Navigator.push(
+                            context, ScaleRoute(page: CheckoutPaymentMEthod()));
                       },
                     ),
                   ),
@@ -403,68 +418,10 @@ class _CartState extends State<Cart> {
     });
   }
 
-  buildCartSellerList() {
-    return SingleChildScrollView(
-      child: ListView.builder(
-        itemCount: 4,
-        scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Padding(
-                //   padding: const EdgeInsets.only(bottom: 0.0, top: 16.0),
-                //   child: Row(
-                //     children: [
-                //       Padding(
-                //         padding: const EdgeInsets.only(right: 8.0),
-                //         child: SizedBox(
-                //           height: 36,
-                //           width: 36,
-                //           child: Transform.scale(
-                //             scale: .75,
-                //             child: Radio(
-                //               value: _shopList[index].owner_id,
-                //               groupValue: _chosenOwnerId,
-                //               activeColor: MyTheme.accent_color,
-                //               onChanged: _handleSellerRadioValueChange,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       Text(
-                //         _shopList[index].name,
-                //         style: TextStyle(color: MyTheme.font_grey),
-                //       ),
-                //       Spacer(),
-                //       Padding(
-                //         padding: const EdgeInsets.only(right: 8.0),
-                //         child: Text(
-                //           partialTotalString(index),
-                //           style: TextStyle(
-                //               color: MyTheme.accent_color, fontSize: 14),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                //buildCartSellerItemList(index),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   buildCartItemCard() {
     return SingleChildScrollView(
       child: ListView.builder(
-        itemCount: data.length,
+        itemCount: 2,
         scrollDirection: Axis.vertical,
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,

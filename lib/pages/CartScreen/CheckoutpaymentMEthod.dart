@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/animation/ScaleRoute.dart';
+import 'package:flutter_app/pages/FoodOrderPage.dart';
 import 'package:flutter_app/pages/HomePage.dart';
 import 'package:flutter_app/toast_component.dart';
+import 'package:flutter_app/widgets/BottomNavBarWidget.dart';
 import 'package:toast/toast.dart';
 
 class CheckoutPaymentMEthod extends StatefulWidget {
@@ -29,68 +31,68 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
       bottomNavigationBar: buildBottomContainer(),
       body: ListView(
         children: [
+          // InkWell(
+          //   onTap: () {
+          //     ToastComponent.showDialog("Order Placed Successfully!", context,
+          //         gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+          //
+          //     //cod();
+          //   },
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(16.0),
+          //     child: Card(
+          //       shape: RoundedRectangleBorder(
+          //         side: BorderSide(color: Color(0xFFFD2D2C), width: 2.0),
+          //         borderRadius: BorderRadius.circular(8.0),
+          //       ),
+          //       elevation: 0.0,
+          //       child: Row(
+          //           mainAxisAlignment: MainAxisAlignment.start,
+          //           children: <Widget>[
+          //             Container(
+          //                 width: 100,
+          //                 height: 100,
+          //                 child: Padding(
+          //                   padding: const EdgeInsets.all(16.0),
+          //                   child: Image.asset(
+          //                     "assets/cod1.png",
+          //                     fit: BoxFit.fitWidth,
+          //                   ),
+          //                   // FadeInImage.assetNetwork(
+          //                   //   placeholder: 'assets/placeholder.png',
+          //                   //   image: ,
+          //                   //   fit: BoxFit.fitWidth,
+          //                   // )
+          //                 )),
+          //             Container(
+          //               child: Column(
+          //                 crossAxisAlignment: CrossAxisAlignment.start,
+          //                 children: [
+          //                   Padding(
+          //                     padding: EdgeInsets.only(left: 8.0),
+          //                     child: Text(
+          //                       "Cash On Delivery",
+          //                       textAlign: TextAlign.left,
+          //                       overflow: TextOverflow.ellipsis,
+          //                       maxLines: 2,
+          //                       style: TextStyle(
+          //                           color: Colors.grey,
+          //                           fontSize: 20,
+          //                           height: 1.6,
+          //                           fontWeight: FontWeight.w400),
+          //                     ),
+          //                   ),
+          //                 ],
+          //               ),
+          //             ),
+          //           ]),
+          //     ),
+          //   ),
+          // ),
           InkWell(
             onTap: () {
-              ToastComponent.showDialog("Order Placed Successfully!", context,
-                  gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-
-              //cod();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0xFFFD2D2C), width: 2.0),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                elevation: 0.0,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                          width: 100,
-                          height: 100,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Image.asset(
-                              "assets/cod1.png",
-                              fit: BoxFit.fitWidth,
-                            ),
-                            // FadeInImage.assetNetwork(
-                            //   placeholder: 'assets/placeholder.png',
-                            //   image: ,
-                            //   fit: BoxFit.fitWidth,
-                            // )
-                          )),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                "Cash On Delivery",
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 20,
-                                    height: 1.6,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              ToastComponent.showDialog("Order Placed Successfully!", context,
-                  gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+              // ToastComponent.showDialog("Order Placed Successfully!", context,
+              //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
 
               // ssl();
             },
@@ -102,60 +104,27 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 elevation: 0.0,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                          width: 100,
-                          height: 100,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Image.asset(
-                              "assets/ssl.png",
-                              fit: BoxFit.fitWidth,
-                            ),
-                          )),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                "Online Payment",
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 20,
-                                    height: 1.6,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "Payment Method",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFF3a3a3b),
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.left,
+                          ),
                         ),
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      PaymentMethodWidget(),
                     ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(70.0),
-            child: Container(
-              color: Color(0xFFFD2D2C),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(16.0),
-                  primary: Colors.white,
-                  textStyle: TextStyle(fontSize: 20),
-                ),
-                onPressed: () {
-                  ToastComponent.showDialog(
-                      "Order Placed Successfully!", context,
-                      gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-                },
-                child: Text('CHECKOUT'),
               ),
             ),
           ),
@@ -195,7 +164,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                 )*/
       ),
 
-      height: MediaQuery.of(context).size.width * .5,
+      height: MediaQuery.of(context).size.width * .8,
       //color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -271,7 +240,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Padding(
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Text(
-                              "SubTotal",
+                              "Grilled Salmon",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 14),
                             ),
@@ -279,7 +248,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(right: 16.0),
-                            child: Text('240',
+                            child: Text('192',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 14,
@@ -292,7 +261,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Padding(
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Text(
-                              "Shipping",
+                              "Meat Vegetable",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 14),
                             ),
@@ -300,7 +269,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(right: 16.0),
-                            child: Text('20',
+                            child: Text('102',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 14,
@@ -313,7 +282,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Padding(
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Text(
-                              "Total Amount",
+                              "Total",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 14),
                             ),
@@ -321,7 +290,7 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(right: 16.0),
-                            child: Text('260',
+                            child: Text('294',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 14,
@@ -329,11 +298,34 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      )
                     ],
                   )),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xFFFD2D2C),
+                ),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.all(16.0),
+                    primary: Colors.white,
+                    textStyle: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    // ToastComponent.showDialog(
+                    //     "Your order has been sent to the kitchen!", context,
+                    //     gravity: Toast.CENTER, duration: 4);
+
+                    Navigator.push(
+                        context, ScaleRoute(page: BottomNavBarWidget()));
+                  },
+                  child: Text('CHECKOUT'),
+                ),
+              ),
             ),
           ],
         ),

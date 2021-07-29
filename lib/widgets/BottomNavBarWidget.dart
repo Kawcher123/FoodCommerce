@@ -44,6 +44,24 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     });
   }
 
+  //New Navbar Code
+
+  int selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  List<Widget> _widgetOptions = <Widget>[
+    HomePage(),
+    HomePage(),
+    Cart(),
+    Profile()
+  ];
+
+  void _onTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,7 +70,28 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           appBar: AppBar(
             title: const Text('Winson FYP Food Delivery'),
           ),
-          body: IndexedStack(index: _selectedIndex, children: listScreens),
+          body: Center(
+            child: _widgetOptions.elementAt(selectedIndex),
+          ),
+          // bottomNavigationBar: BottomNavigationBar(
+          //   items: const <BottomNavigationBarItem>[
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.home),
+          //       label: 'Home',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.business),
+          //       label: 'Business',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.school),
+          //       label: 'School',
+          //     ),
+          //   ],
+          //   currentIndex: _selectedIndex,
+          //   selectedItemColor: Colors.amber[800],
+          //   onTap: _onItemTapped,
+          // ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: const <BottomNavigationBarItem>[
@@ -85,9 +124,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                 ),
               ),
             ],
-            currentIndex: _selectedIndex,
+            currentIndex: selectedIndex,
             selectedItemColor: Color(0xFFfd5352),
-            onTap: _onItemTapped,
+            onTap: _onTapped,
           ),
         ),
       ),
