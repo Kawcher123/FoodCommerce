@@ -311,9 +311,9 @@ class _CheckoutPaymentMEthodState extends State<CheckoutPaymentMEthod> {
                     textStyle: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    // ToastComponent.showDialog(
-                    //     "Your order has been sent to the kitchen!", context,
-                    //     gravity: Toast.CENTER, duration: 4);
+                    ToastComponent.showDialog(
+                        "Your order has been sent to the kitchen!", context,
+                        gravity: Toast.CENTER, duration: 4);
 
                     Navigator.push(
                         context, ScaleRoute(page: BottomNavBarWidget()));
