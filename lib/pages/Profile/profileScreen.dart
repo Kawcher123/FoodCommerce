@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/animation/ScaleRoute.dart';
+import 'package:flutter_app/pages/SignInPage.dart';
 
 class Profile extends StatefulWidget {
   static const String routeName = '/profile';
@@ -206,156 +208,216 @@ class _ProfileState extends State<Profile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Gold',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
+          InkWell(
+            onTap: () {
+              // ToastComponent.showDialog("Coming soon", context,
+              //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+            },
+            child: Visibility(
+              visible: false,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Row(
+                  children: [
+                    Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.notifications_outlined,
+                            color: Colors.white,
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        "Notification",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                      ),
+                    )
+                  ],
                 ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
               ),
             ),
           ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Rewards',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
-              ),
-            ),
-          ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Business Profile',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
-              ),
-            ),
-          ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Scheduled',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
+          InkWell(
+            onTap: () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //   return OrderList();
+              // }));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Row(
+                children: [
+                  Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.credit_card_rounded,
+                          color: Colors.white,
+                        ),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      "Purchase History",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Challenges',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
-              ),
-            ),
-          ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Saved Places',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
-              ),
-            ),
-          ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Help Center',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
+          InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Row(
+                children: [
+                  Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.favorite_border_outlined,
+                          color: Colors.white,
+                        ),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      "Wish List",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Emergency Contacts',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
+          InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Row(
+                children: [
+                  Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.lock_outline,
+                          color: Colors.white,
+                        ),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      "Change Password",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
-          Divider(),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                'Settings',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1.color,
+          token == null
+              ? InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Row(
+                      children: [
+                        Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset("assets/login.png"),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Text(
+                            "Login",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              : InkWell(
+                  onTap: () {
+                    logout();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Row(
+                      children: [
+                        Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.logout,
+                                color: Colors.white,
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Text(
+                            "Logout",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Theme.of(context).textTheme.bodyText2.color,
-              ),
-            ),
-          ),
-          Divider(),
         ],
       ),
     );
   }
 
-  void logout() {}
+  void logout() {
+    Navigator.push(context, ScaleRoute(page: SignInPage(true)));
+  }
 
   buildCountersRow() {
     return Row(

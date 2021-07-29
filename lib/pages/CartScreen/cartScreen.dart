@@ -3,9 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/animation/ScaleRoute.dart';
+import 'package:flutter_app/pages/CartScreen/CheckoutpaymentMEthod.dart';
+import 'package:flutter_app/toast_component.dart';
+import 'package:toast/toast.dart';
 
 class Cart extends StatefulWidget {
   static const String routeName = '/CartScreen';
+
+  bool back;
+
+  Cart({this.back});
 
   @override
   _CartState createState() => _CartState();
@@ -36,10 +44,38 @@ class _CartState extends State<Cart> {
   TextEditingController _textEditingController = TextEditingController();
   String token, userId;
 
+  List data = [
+    {
+      'name': 'Fried Egg',
+      'price': 24,
+      'quantity': 3,
+      'image': 'assets/demo.jpeg'
+    },
+    {
+      'name': 'Mixed Vegetable',
+      'price': 20,
+      'quantity': 2,
+      'image': 'assets/demo2.jpeg'
+    },
+  ];
+
+  getSetCartTotal() {
+    _cartTotal = 0.00;
+    if (data.length > 0) {
+      for (int i = 0; i < data.length; i++) {
+        setState(() {
+          _cartTotal += (data[i]['price'].ceil() * data[i]['quantity']);
+        });
+      }
+    }
+
+    setState(() {});
+  }
+
   @override
   void initState() {
     // TODO: implement initState
-
+    getSetCartTotal();
     super.initState();
   }
 
@@ -95,7 +131,7 @@ class _CartState extends State<Cart> {
                 )*/
       ),
 
-      height: hasBottomBar == null ? 200 : 140,
+      height: hasBottomBar == null ? 120 : 40,
       //color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -105,7 +141,8 @@ class _CartState extends State<Cart> {
               height: 40,
               width: double.infinity,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0), color: Colors.blue),
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: Color(0xFFFD2D2C)),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
@@ -120,7 +157,7 @@ class _CartState extends State<Cart> {
                     Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(right: 16.0),
-                      child: Text('240',
+                      child: Text('${_cartTotal}',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -150,7 +187,7 @@ class _CartState extends State<Cart> {
                     child: FlatButton(
                       minWidth: MediaQuery.of(context).size.width,
                       //height: 50,
-                      color: Colors.blue,
+                      color: Color(0xFFFD2D2C),
                       shape: RoundedRectangleBorder(
                           borderRadius: const BorderRadius.only(
                         topLeft: const Radius.circular(8.0),
@@ -167,7 +204,11 @@ class _CartState extends State<Cart> {
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      onPressed: () async {},
+                      onPressed: () async {
+                        ToastComponent.showDialog(
+                            "Order Placed Successfully!", context,
+                            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+                      },
                     ),
                   ),
                 ),
@@ -179,23 +220,177 @@ class _CartState extends State<Cart> {
     );
   }
 
+  Container buildBottomCard() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        /*border: Border(
+                  top: BorderSide(color: MyTheme.light_grey,width: 1.0),
+                )*/
+      ),
+
+      height: MediaQuery.of(context).size.width * .5,
+      //color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Container(
+              //height: 150,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.redAccent,
+              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 230,
+                            height: 50,
+                            child: TextFormField(
+                              onTap: () {
+                                focusNode.addListener(
+                                  () {
+                                    if (focusNode.hasFocus) {
+                                      setState(() {
+                                        this.height = 1;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        this.height = 3;
+                                      });
+                                    }
+                                  },
+                                );
+                              },
+                              focusNode: focusNode,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(12),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey)),
+                                hintText: "Coupon Code",
+                              ),
+                            ),
+                            padding:
+                                EdgeInsets.only(left: 12, right: 12, top: 12),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, right: 10),
+                            child: RaisedButton(
+                              color: Color(0xFFFD2D2C),
+                              textColor: Colors.white,
+                              child: Text('Apply'),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                              onPressed: () {},
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text(
+                              "SubTotal",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 14),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Text('240',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text(
+                              "Shipping",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 14),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Text('20',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text(
+                              "Total Amount",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 14),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Text('260',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ],
+                  )),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   AppBar buildAppBar(BuildContext context) {
+    print(widget.back);
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.white,
-      automaticallyImplyLeading: hasBottomBar != null ? true : false,
       iconTheme: IconThemeData(color: Colors.black38),
-      leading: hasBottomBar != null
+      leading: widget.back != null
           ? Builder(
               builder: (context) => IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.grey),
+                icon: Icon(Icons.arrow_back_ios, color: Color(0xFF3a3737)),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             )
           : Wrap(),
       title: Text(
         "Shopping Cart",
-        style: TextStyle(fontSize: 16, color: Colors.blue),
+        style: TextStyle(fontSize: 16, color: Color(0xFFFD2D2C)),
       ),
       elevation: 0.0,
       titleSpacing: 0,
@@ -269,15 +464,15 @@ class _CartState extends State<Cart> {
   buildCartItemCard() {
     return SingleChildScrollView(
       child: ListView.builder(
-        itemCount: 4,
+        itemCount: data.length,
         scrollDirection: Axis.vertical,
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          String imageLink;
+          String imageLink = data[index]['image'];
           return Card(
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.blue, width: 1.0),
+              side: BorderSide(color: Color(0xFFFD2D2C), width: 1.0),
               borderRadius: BorderRadius.circular(8.0),
             ),
             elevation: 0.0,
@@ -288,13 +483,7 @@ class _CartState extends State<Cart> {
                   height: 100,
                   child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: imageLink != null
-                          ? FadeInImage.assetNetwork(
-                              placeholder: 'assets/placeholder.png',
-                              image: imageLink,
-                              fit: BoxFit.fitWidth,
-                            )
-                          : Image(image: AssetImage('assets/demo.jpeg')))),
+                      child: Image(image: AssetImage(data[index]['image'])))),
               Container(
                 width: 170,
                 child: Column(
@@ -306,7 +495,7 @@ class _CartState extends State<Cart> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'name',
+                            data[index]['name'],
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
@@ -321,12 +510,12 @@ class _CartState extends State<Cart> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: Text(
-                                  '24',
+                                  '${data[index]['price'] * data[index]['quantity']}',
                                   textAlign: TextAlign.left,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Color(0xFFFD2D2C),
                                       fontSize: 14,
                                       height: 1.6,
                                       fontWeight: FontWeight.w600),
@@ -368,7 +557,7 @@ class _CartState extends State<Cart> {
                         padding: EdgeInsets.all(0),
                         child: Icon(
                           Icons.add,
-                          color: Colors.blue,
+                          color: Color(0xFFFD2D2C),
                           size: 18,
                         ),
                         shape: CircleBorder(
@@ -376,14 +565,17 @@ class _CartState extends State<Cart> {
                         ),
                         color: Colors.white,
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            data[index]['quantity']++;
+                            getSetCartTotal();
+                          });
                         },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: Text(
-                        '3',
+                        '${data[index]['quantity']}',
                         style: TextStyle(color: Colors.grey, fontSize: 16),
                       ),
                     ),
@@ -394,7 +586,7 @@ class _CartState extends State<Cart> {
                         padding: EdgeInsets.all(0),
                         child: Icon(
                           Icons.remove,
-                          color: Colors.blue,
+                          color: Color(0xFFFD2D2C),
                           size: 18,
                         ),
                         height: 30,
@@ -403,7 +595,12 @@ class _CartState extends State<Cart> {
                         ),
                         color: Colors.white,
                         onPressed: () {
-                          setState(() {});
+                          if (data[index]['quantity'] > 1) {
+                            setState(() {
+                              data[index]['quantity']--;
+                              getSetCartTotal();
+                            });
+                          }
 
                           // onQuantityDecrease(seller_index, item_index);
                         },

@@ -3,11 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_app/animation/ScaleRoute.dart';
 import 'package:flutter_app/pages/FoodDetailsPage.dart';
 import 'package:flutter_app/pages/SignUpPage.dart';
+import 'package:flutter_app/widgets/BottomNavBarWidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInPage extends StatefulWidget {
   final bool hideIcon;
-  SignInPage(this.hideIcon, {Key key}): super(key: key);
+  SignInPage(this.hideIcon, {Key key}) : super(key: key);
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -18,6 +19,10 @@ class _SignInPageState extends State<SignInPage> {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController passController = TextEditingController();
+    String phone = '019123456';
+    String password = 'ABC123';
 
     return Scaffold(
       body: Container(
@@ -32,12 +37,11 @@ class _SignInPageState extends State<SignInPage> {
               child: InkWell(
                 child: Container(
                   child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Visibility(
-                      child: Icon(Icons.close),
-                      visible: !widget.hideIcon,
-                    )
-                  ),
+                      alignment: Alignment.topLeft,
+                      child: Visibility(
+                        child: Icon(Icons.close),
+                        visible: !widget.hideIcon,
+                      )),
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -61,6 +65,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: phoneController,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -88,6 +93,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: passController,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -136,7 +142,49 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  SignInButtonWidget(),
+                  Container(
+                    width: double.infinity,
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0xFFfbab66),
+                        ),
+                        BoxShadow(
+                          color: Color(0xFFf7418c),
+                        ),
+                      ],
+                      gradient: new LinearGradient(
+                          colors: [Color(0xFFf7418c), Color(0xFFfbab66)],
+                          begin: const FractionalOffset(0.2, 0.2),
+                          end: const FractionalOffset(1.0, 1.0),
+                          stops: [0.0, 1.0],
+                          tileMode: TileMode.clamp),
+                    ),
+                    child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Color(0xFFf7418c),
+                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 42.0),
+                          child: Text(
+                            "SIGN IN",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                fontFamily: "WorkSansBold"),
+                          ),
+                        ),
+                        onPressed: () => {
+                              if (phoneController.text == phone &&
+                                  passController.text == password)
+                                {
+                                  Navigator.push(context,
+                                      ScaleRoute(page: BottomNavBarWidget()))
+                                }
+                            }),
+                  ),
                   SizedBox(
                     height: 2,
                   ),
@@ -165,7 +213,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     InkWell(
                       onTap: () => {
-                      Navigator.push(context, ScaleRoute(page: SignUpPage()))
+                        Navigator.push(context, ScaleRoute(page: SignUpPage()))
                       },
                       child: Container(
                         child: Text(
